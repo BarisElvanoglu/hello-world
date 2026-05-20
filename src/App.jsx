@@ -1,8 +1,10 @@
-import { BrowserRouter, Routes, Route, Link, NavLink } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
 import Sayac from './Sayac';
 import PropsGosterimi from './PropsGosterimi';
 import EfektEkrani from './EfektEkrani';
 import LiftingState from './LiftingState';
+import RefEkrani from './RefEkrani';
+import ContextEkrani from './ContextEkrani'; // Yeni ekran eklendi!
 
 function App() {
   const kullaniciAdi = "Genç Yazılımcı";
@@ -13,30 +15,33 @@ function App() {
       <div style={{ padding: '20px', textAlign: 'center', fontFamily: 'Arial' }}>
         <h1>React Öğrenme Paneli</h1>
 
-        {/* 1. Linkler: Sayfayı yenilemeden URL'i değiştirirler */}
+        {/* Üst Menü / Navigasyon */}
         <nav style={{ marginBottom: '20px', display: 'flex', justifyContent: 'center', gap: '10px', flexWrap: 'wrap' }}>
           <NavLink to="/" style={({ isActive }) => isActive ? activeBtnStyle : btnStyle}>Özet</NavLink>
           <NavLink to="/sayac" style={({ isActive }) => isActive ? activeBtnStyle : btnStyle}>useState</NavLink>
           <NavLink to="/props" style={({ isActive }) => isActive ? activeBtnStyle : btnStyle}>Props</NavLink>
           <NavLink to="/efekt" style={({ isActive }) => isActive ? activeBtnStyle : btnStyle}>useEffect</NavLink>
           <NavLink to="/lifting" style={({ isActive }) => isActive ? activeBtnStyle : btnStyle}>Lifting State</NavLink>
+          <NavLink to="/ref" style={({ isActive }) => isActive ? activeBtnStyle : btnStyle}>useRef</NavLink>
+          <NavLink to="/context" style={({ isActive }) => isActive ? activeBtnStyle : btnStyle}>useContext</NavLink>
         </nav>
 
+        {/* Ekran Değişim Alanı */}
         <div style={{ maxWidth: '500px', margin: '0 auto' }}>
-          {/* 2. Routes: URL'e göre hangi bileşenin render edileceğini belirler */}
           <Routes>
             <Route path="/" element={
               <div>
                 <h2>Özet Ekranı</h2>
-                <p>Artık URL tabanlı navigasyon kullanıyoruz!</p>
+                <p>Navigasyon yapısı tamamlandı. Şimdi Hook'ları derinlemesine öğreniyoruz.</p>
               </div>
             } />
             <Route path="/sayac" element={<Sayac />} />
             <Route path="/props" element={<PropsGosterimi isim={kullaniciAdi} liste={ogrenilecekler} />} />
             <Route path="/efekt" element={<EfektEkrani />} />
             <Route path="/lifting" element={<LiftingState />} />
+            <Route path="/ref" element={<RefEkrani />} />
+            <Route path="/context" element={<ContextEkrani />} /> {/* Yeni rota eklendi! */}
             
-            {/* Yanlış bir URL girilirse burası çalışır */}
             <Route path="*" element={<h2>404 - Yolunu mu kaybettin?</h2>} />
           </Routes>
         </div>
@@ -45,7 +50,7 @@ function App() {
   );
 }
 
-// Stil objeleri
+// Buton Stil Tanımlamaları
 const btnStyle = { 
   padding: '10px', 
   textDecoration: 'none', 
