@@ -6,7 +6,8 @@ import LiftingState from './LiftingState';
 import RefEkrani from './RefEkrani';
 import ContextEkrani from './ContextEkrani'; 
 import PerformansEkrani from './PerformansEkrani';
-import OzetEkrani from './OzetEkrani'; // 1. YENİ EKRANI IMPORT ETTİK!
+import OzetEkrani from './OzetEkrani'; 
+import UserList from './UserList'; // 1. Tam olarak senin belirttiğin gibi UserList olarak import ettik!
 
 function App() {
   const kullaniciAdi = "Genç Yazılımcı";
@@ -27,14 +28,13 @@ function App() {
           <NavLink to="/ref" style={({ isActive }) => isActive ? activeBtnStyle : btnStyle}>useRef</NavLink>
           <NavLink to="/context" style={({ isActive }) => isActive ? activeBtnStyle : btnStyle}>useContext</NavLink>
           <NavLink to="/performans" style={({ isActive }) => isActive ? activeBtnStyle : btnStyle}>Performans</NavLink>
+          <NavLink to="/users" style={({ isActive }) => isActive ? activeBtnStyle : btnStyle}>API / UserList</NavLink> {/* Yeni Menü Elemanı */}
         </nav>
 
         {/* Ekran Değişim Alanı */}
         <div style={{ maxWidth: '500px', margin: '0 auto' }}>
           <Routes>
-            {/* 2. BURAYI DEĞİŞTİRDİK: Doğrudan yeni bileşeni element olarak verdik */}
             <Route path="/" element={<OzetEkrani />} /> 
-            
             <Route path="/sayac" element={<Sayac />} />
             <Route path="/props" element={<PropsGosterimi isim={kullaniciAdi} liste={ogrenilecekler} />} />
             <Route path="/efekt" element={<EfektEkrani />} />
@@ -42,6 +42,7 @@ function App() {
             <Route path="/ref" element={<RefEkrani />} />
             <Route path="/context" element={<ContextEkrani />} /> 
             <Route path="/performans" element={<PerformansEkrani />} />     
+            <Route path="/users" element={<UserList />} /> {/* 2. Route tanımını da UserList yaptık */}
             
             <Route path="*" element={<h2>404 - Yolunu mu kaybettin?</h2>} />
           </Routes>
