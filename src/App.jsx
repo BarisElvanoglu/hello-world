@@ -4,7 +4,9 @@ import PropsGosterimi from './PropsGosterimi';
 import EfektEkrani from './EfektEkrani';
 import LiftingState from './LiftingState';
 import RefEkrani from './RefEkrani';
-import ContextEkrani from './ContextEkrani'; // Yeni ekran eklendi!
+import ContextEkrani from './ContextEkrani'; 
+import PerformansEkrani from './PerformansEkrani';
+import OzetEkrani from './OzetEkrani'; // 1. YENİ EKRANI IMPORT ETTİK!
 
 function App() {
   const kullaniciAdi = "Genç Yazılımcı";
@@ -24,23 +26,22 @@ function App() {
           <NavLink to="/lifting" style={({ isActive }) => isActive ? activeBtnStyle : btnStyle}>Lifting State</NavLink>
           <NavLink to="/ref" style={({ isActive }) => isActive ? activeBtnStyle : btnStyle}>useRef</NavLink>
           <NavLink to="/context" style={({ isActive }) => isActive ? activeBtnStyle : btnStyle}>useContext</NavLink>
+          <NavLink to="/performans" style={({ isActive }) => isActive ? activeBtnStyle : btnStyle}>Performans</NavLink>
         </nav>
 
         {/* Ekran Değişim Alanı */}
         <div style={{ maxWidth: '500px', margin: '0 auto' }}>
           <Routes>
-            <Route path="/" element={
-              <div>
-                <h2>Özet Ekranı</h2>
-                <p>Navigasyon yapısı tamamlandı. Şimdi Hook'ları derinlemesine öğreniyoruz.</p>
-              </div>
-            } />
+            {/* 2. BURAYI DEĞİŞTİRDİK: Doğrudan yeni bileşeni element olarak verdik */}
+            <Route path="/" element={<OzetEkrani />} /> 
+            
             <Route path="/sayac" element={<Sayac />} />
             <Route path="/props" element={<PropsGosterimi isim={kullaniciAdi} liste={ogrenilecekler} />} />
             <Route path="/efekt" element={<EfektEkrani />} />
             <Route path="/lifting" element={<LiftingState />} />
             <Route path="/ref" element={<RefEkrani />} />
-            <Route path="/context" element={<ContextEkrani />} /> {/* Yeni rota eklendi! */}
+            <Route path="/context" element={<ContextEkrani />} /> 
+            <Route path="/performans" element={<PerformansEkrani />} />     
             
             <Route path="*" element={<h2>404 - Yolunu mu kaybettin?</h2>} />
           </Routes>
